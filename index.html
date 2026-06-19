@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>工业自动化培训</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: #1a1a1a;
+            color: #e8e8e8;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== 头部 - 干净无号码 ===== */
+        .header {
+            background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-bottom: 2px solid #c8956c;
+            padding: 16px 16px 12px;
+        }
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .brand {
+            font-size: 18px;
+            font-weight: 700;
+            color: #c8956c;
+            letter-spacing: 1px;
+        }
+        .brand small {
+            display: block;
+            font-size: 11px;
+            font-weight: 400;
+            color: #999;
+            letter-spacing: 0.5px;
+        }
+        .header-title {
+            text-align: center;
+            padding: 8px 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            margin-bottom: 8px;
+        }
+        .header-title .main {
+            font-size: 22px;
+            font-weight: 900;
+            color: #c8956c;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(200, 149, 108, 0.2);
+        }
+        .header-title .main span {
+            display: inline-block;
+            background: rgba(200, 149, 108, 0.12);
+            padding: 0 10px;
+            border-radius: 4px;
+        }
+        .header-title .sub {
+            font-size: 13px;
+            color: #999;
+            letter-spacing: 2px;
+            margin-top: 4px;
+        }
+        .header-bottom {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            font-size: 12px;
+            color: #c8956c;
+            padding-top: 6px;
+        }
+        .header-bottom span {
+            background: rgba(200, 149, 108, 0.06);
+            padding: 2px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(200, 149, 108, 0.1);
+        }
+
+        /* ===== 底部电话 - 大、清晰、可点击 ===== */
+        .footer {
+            background: #111;
+            padding: 32px 16px 40px;
+            text-align: center;
+            border-top: 2px solid #c8956c;
+            margin-top: 32px;
+        }
+        .footer-brand {
+            font-size: 18px;
+            font-weight: 700;
+            color: #c8956c;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .footer-brand small {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            color: #888;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+        .footer-contact {
+            font-size: 15px;
+            color: #ccc;
+            line-height: 2;
+            margin-top: 12px;
+        }
+        .phone-link {
+            display: inline-block;
+            font-size: 28px;
+            font-weight: 800;
+            color: #c8956c;
+            background: rgba(200, 149, 108, 0.10);
+            padding: 10px 28px;
+            border-radius: 50px;
+            border: 2px solid #c8956c;
+            text-decoration: none;
+            margin: 6px 0;
+            letter-spacing: 2px;
+            transition: background 0.2s;
+        }
+        .phone-link:hover {
+            background: rgba(200, 149, 108, 0.20);
+        }
+        .phone-link small {
+            font-size: 16px;
+            font-weight: 400;
+            color: #aaa;
+            display: block;
+            margin-top: 2px;
+            letter-spacing: 1px;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #c8956c, #b08055);
+            color: #1a1a1a;
+            padding: 14px 48px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 16px 0 8px;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        /* 以下所有样式保持不变 */
+        .section {
+            padding: 28px 16px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #c8956c;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #c8956c;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: #c8956c;
+            border-radius: 2px;
+        }
+        .preface {
+            background: #252525;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 14px;
+            color: #ccc;
+            line-height: 1.8;
+            border-left: 4px solid #c8956c;
+        }
+        .highlight {
+            color: #c8956c;
+            font-weight: 600;
+        }
+        .preface-points {
+            margin-top: 12px;
+        }
+        .preface-points li {
+            list-style: none;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #bbb;
+        }
+        .preface-points li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #c8956c;
+            font-weight: bold;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #2a2a2a, #333);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid rgba(200, 149, 108, 0.2);
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #c8956c;
+            display: block;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+        .class-overview {
+            display: grid;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .class-card {
+            background: #252525;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+        .class-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+        .class-card.full::before { background: #c8956c; }
+        .class-card.part::before { background: #64b4ff; }
+        .class-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .class-card.full .class-badge {
+            background: rgba(200, 149, 108, 0.2);
+            color: #c8956c;
+            border: 1px solid #c8956c;
+        }
+        .class-card.part .class-badge {
+            background: rgba(100, 180, 255, 0.15);
+            color: #64b4ff;
+            border: 1px solid #64b4ff;
+        }
+        .class-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #e8e8e8;
+            margin-bottom: 8px;
+        }
+        .class-info {
+            font-size: 13px;
+            color: #aaa;
+            line-height: 2;
+        }
+        .class-info strong {
+            color: #c8956c;
+        }
+        .module-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 12px;
+        }
+        .module-table th {
+            background: #c8956c;
+            color: #1a1a1a;
+            padding: 10px 6px;
+            text-align: center;
+            font-weight: 700;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .module-table td {
+            padding: 10px 6px;
+            border-bottom: 1px solid #333;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .module-table tr:nth-child(even) {
+            background: #252525;
+        }
+        .module-table .mod-name {
+            text-align: left;
+            font-weight: 600;
+            color: #e8e8e8;
+        }
+        .module-table .time-full {
+            color: #c8956c;
+            font-weight: 600;
+        }
+        .module-table .time-part {
+            color: #64b4ff;
+            font-weight: 600;
+        }
+        .module-table .week-tag {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            background: #333;
+            color: #999;
+            margin-top: 2px;
+        }
+        .schedule-card {
+            background: #252525;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid #333;
+        }
+        .schedule-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #c8956c;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .schedule-content {
+            font-size: 13px;
+            color: #bbb;
+            line-height: 2;
+        }
+        .schedule-content strong {
+            color: #e8e8e8;
+        }
+        .guarantee-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .guarantee-item {
+            background: linear-gradient(135deg, #2a2a2a, #333);
+            border-radius: 10px;
+            padding: 20px 16px;
+            text-align: center;
+            border: 1px solid rgba(200, 149, 108, 0.2);
+        }
+        .guarantee-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .guarantee-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #c8956c;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #c8956c; border-radius: 3px; }
+
+        @media (min-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(4, 1fr); }
+            .guarantee-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .header-top { flex-direction: column; align-items: flex-start; gap: 6px; }
+            .header-title .main { font-size: 18px; letter-spacing: 2px; }
+            .phone-link { font-size: 22px; padding: 8px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== 头部 - 干净无号码 ===== -->
+<header class="header">
+    <div class="header-top">
+        <div class="brand">
+            简禾教育科技
+            <small>宜东产业工人技能服务中心</small>
+        </div>
+    </div>
+    <div class="header-title">
+        <div class="main"><span>重磅！离散工控园区来袭</span></div>
+        <div class="sub">工业自动化 · 岗前实战培训</div>
+    </div>
+    <div class="header-bottom">
+        <span>📞 个人学习咨询</span>
+        <span>🏭 承接企业内训</span>
+    </div>
+</header>
+
+<!-- 页面主体内容（完全保留） -->
+<section class="section">
+    <div class="section-title">培训简介</div>
+    <div class="preface">
+        面向工业自动化岗位群，培养掌握<span class="highlight">PLC编程、伺服定位、变频调速、工业通讯、触摸屏开发</span>五大核心技能的高技能复合型人才。
+        <ul class="preface-points">
+            <li>"岗课赛证"融通，双轨并行、阶梯递进</li>
+            <li>理论精讲 → 实操强化 → 项目实战 → 考核认证</li>
+            <li>结业即上岗、持证即就业</li>
+        </ul>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">核心培养数据</div>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-number">240</span>
+            <div class="stat-label">零基础班总课时</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">160</span>
+            <div class="stat-label">在岗提升班课时</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">24+</span>
+            <div class="stat-label">零基础班实操项目</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">15+</span>
+            <div class="stat-label">提升班实操项目</div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">双轨班型总览</div>
+    <div class="class-overview">
+        <div class="class-card full">
+            <div class="class-badge">全脱产 · 6周通关</div>
+            <div class="class-name">零基础就业班</div>
+            <div class="class-info">
+                <strong>适合人群：</strong>无电工/电气基础、欲转行从业者<br>
+                <strong>总课时：</strong>240课时（理论68 + 实操152 + 考核20）<br>
+                <strong>学习周期：</strong>6周（约1.5个月，周一至周五每天8课时）<br>
+                <strong>入学起点：</strong>须从"电工基础与电气控制"完整修读<br>
+                <strong>实操项目：</strong>24+个综合性实操项目
+            </div>
+        </div>
+        <div class="class-card part">
+            <div class="class-badge">夜校+周末 · 16周进阶</div>
+            <div class="class-name">在岗提升班</div>
+            <div class="class-info">
+                <strong>适合人群：</strong>有一定电气/电路维护经验的在岗技术人员<br>
+                <strong>总课时：</strong>160课时（理论44 + 实操104 + 考核12）<br>
+                <strong>学习周期：</strong>16周（约4个月，每周10课时新课）<br>
+                <strong>入学起点：</strong>直接从"PLC硬件与基础编程"入学，不含电工基础<br>
+                <strong>实操项目：</strong>15+个综合性实操项目
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">课程概览对比</div>
+    <div style="overflow-x: auto;">
+        <table class="module-table">
+            <tr>
+                <th>对比维度</th>
+                <th>零基础就业班</th>
+                <th>在岗提升班</th>
+            </tr>
+            <tr>
+                <td class="mod-name">授课形式</td>
+                <td class="time-full">全脱产集中授课</td>
+                <td class="time-part">夜校授课+周末巩固</td>
+            </tr>
+            <tr>
+                <td class="mod-name">总课时</td>
+                <td class="time-full">240课时</td>
+                <td class="time-part">160课时</td>
+            </tr>
+            <tr>
+                <td class="mod-name">学习周期</td>
+                <td>6周（约1.5个月）</td>
+                <td>16周（约4个月）</td>
+            </tr>
+            <tr>
+                <td class="mod-name">适合人群</td>
+                <td>零基础、欲转行就业者</td>
+                <td>有电气经验的在岗人员</td>
+            </tr>
+            <tr>
+                <td class="mod-name">电工基础课程</td>
+                <td class="time-full">✔ 包含（40课时）</td>
+                <td class="time-part">✘ 不包含</td>
+            </tr>
+            <tr>
+                <td class="mod-name">西门子1200PLC</td>
+                <td class="time-full">✔ 核心课程</td>
+                <td class="time-full">✔ 核心课程</td>
+            </tr>
+            <tr>
+                <td class="mod-name">功能指令块</td>
+                <td class="time-full">✔ 定时器/计数器/比较/运算/移动/位移</td>
+                <td class="time-full">✔ 定时器/计数器/比较/运算/移动/位移</td>
+            </tr>
+            <tr>
+                <td class="mod-name">高级应用</td>
+                <td class="time-full">✔ 程序块(FC/FB/DB)+SCL语言</td>
+                <td class="time-full">✔ 程序块(FC/FB/DB)+SCL语言</td>
+            </tr>
+            <tr>
+                <td class="mod-name">模拟量与变频器</td>
+                <td class="time-full">✔ 模拟量信号+变频器多段速控制</td>
+                <td class="time-full">✔ 模拟量信号+变频器多段速控制</td>
+            </tr>
+            <tr>
+                <td class="mod-name">运动控制</td>
+                <td class="time-full">✔ 伺服系统+单轴/双轴定位控制</td>
+                <td class="time-full">✔ 伺服系统+单轴/双轴定位控制</td>
+            </tr>
+            <tr>
+                <td class="mod-name">通讯技术</td>
+                <td class="time-full">✔ S7通讯+ModBusRTU通讯</td>
+                <td class="time-full">✔ S7通讯+ModBusRTU通讯</td>
+            </tr>
+            <tr>
+                <td class="mod-name">触摸屏</td>
+                <td class="time-full">✔ 画面制作+元件+报警功能</td>
+                <td class="time-full">✔ 画面制作+元件+报警功能</td>
+            </tr>
+            <tr>
+                <td class="mod-name">实操项目</td>
+                <td class="time-full">24+个综合性实操项目</td>
+                <td class="time-part">15+个综合性实操项目</td>
+            </tr>
+            <tr>
+                <td class="mod-name">综合实训</td>
+                <td class="time-full">✔ 结业抽签项目+答辩</td>
+                <td class="time-full">✔ 结业抽签项目+答辩</td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">课程模块详细对比</div>
+    <div style="overflow-x: auto;">
+        <table class="module-table">
+            <tr>
+                <th style="width:22%;">教学模块</th>
+                <th style="width:15%;">时间安排</th>
+                <th style="width:31%;">零基础就业班（全脱产）</th>
+                <th style="width:32%;">在岗提升班（夜校+周末）</th>
+            </tr>
+            <tr>
+                <td class="mod-name">电工基础<br><span class="week-tag">零基础班必修</span></td>
+                <td>第1周</td>
+                <td class="time-full">40课时<br>讲16+操24</td>
+                <td class="time-part">— 本模块不包含 —</td>
+            </tr>
+            <tr>
+                <td class="mod-name">PLC基础认知</td>
+                <td>第2周 /<br>第1-2周</td>
+                <td class="time-full">16课时<br>讲6+操10</td>
+                <td class="time-part">16课时<br>讲6+操10</td>
+            </tr>
+            <tr>
+                <td class="mod-name">逻辑指令</td>
+                <td>第2周 /<br>第2-3周</td>
+                <td class="time-full">24课时<br>讲8+操16</td>
+                <td class="time-part">16课时<br>讲6+操10<br><span style="color:#999; font-size:11px;">精简部分基础实操</span></td>
+            </tr>
+            <tr>
+                <td class="mod-name">功能指令块</td>
+                <td>第3周 /<br>第3-5周</td>
+                <td class="time-full">24课时<br>讲8+操16</td>
+                <td class="time-part">14课时<br>讲4+操10<br><span style="color:#999; font-size:11px;">节奏更缓，分散3周</span></td>
+            </tr>
+            <tr>
+                <td class="mod-name">高级应用-程序块<br>FC/FB/DB</td>
+                <td>第4周 /<br>第5-7周</td>
+                <td class="time-full">16课时<br>讲6+操10</td>
+                <td class="time-part">12课时<br>讲4+操8<br><span style="color:#999; font-size:11px;">增加消化时间</span></td>
+            </tr>
+            <tr>
+                <td class="mod-name">高级应用-SCL</td>
+                <td>第4周 /<br>第7-8周</td>
+                <td class="time-full">16课时<br>讲6+操10</td>
+                <td class="time-part">10课时<br>讲4+操6<br><span style="color:#999; font-size:11px;">侧重流程控制</span></td>
+            </tr>
+            <tr>
+                <td class="mod-name">模拟量与变频器</td>
+                <td>第5周 /<br>第9-10周</td>
+                <td class="time-full">16课时<br>讲6+操10</td>
+                <td class="time-part">16课时<br>讲6+操10</td>
+            </tr>
+            <tr>
+                <td class="mod-name">运动控制（伺服）</td>
+                <td>第5周 /<br>第11-12周</td>
+                <td class="time-full">16课时<br>讲6+操10</td>
+                <td class="time-part">16课时<br>讲6+操10</td>
+            </tr>
+            <tr>
+                <td class="mod-name">通讯技术</td>
+                <td>第5周 /<br>第13-14周</td>
+                <td class="time-full">16课时<br>讲6+操10</td>
+                <td class="time-part">16课时<br>讲6+操10</td>
+            </tr>
+            <tr>
+                <td class="mod-name">触摸屏HMI</td>
+                <td>第6周 /<br>第15-16周</td>
+                <td class="time-full">16课时<br>讲6+操10</td>
+                <td class="time-part">16课时<br>讲6+操10</td>
+            </tr>
+            <tr>
+                <td class="mod-name">综合实训与答辩</td>
+                <td>第6周 /<br>第16周</td>
+                <td class="time-full">20课时<br>讲4+操16</td>
+                <td class="time-part">12课时<br>讲2+操10</td>
+            </tr>
+        </table>
+    </div>
+    <p style="font-size:12px; color:#666; margin-top:8px; text-align:center;">* 两班型核心课程内容相同，差异主要体现在课时分配与教学节奏上</p>
+</section>
+
+<section class="section">
+    <div class="section-title">开班形式与排课方案</div>
+
+    <div class="schedule-card">
+        <div class="schedule-title">📅 零基础就业班 · 全脱产集中授课</div>
+        <div class="schedule-content">
+            <strong>时间安排：</strong>周一至周五，每天8课时（上午+下午）<br>
+            <strong>教学进度：</strong>约30个工作日完成全部240课时；前5周教学+里程碑考核，最后1周为结业综合验收与答辩<br>
+            <strong>学习周期：</strong>6周（约1.5个月）<br>
+            <strong>授课模式：</strong>一体化教学（讲练交替）+ 里程碑通关考核 + 结业综合项目答辩
+        </div>
+    </div>
+
+    <div class="schedule-card">
+        <div class="schedule-title" style="color:#64b4ff;">📅 在岗提升班 · 夜校授课+周末巩固</div>
+        <div class="schedule-content">
+            <strong>时间安排：</strong>周一至周五晚，每晚2课时；周末不讲授新课，安排补缺、答疑及实操巩固<br>
+            <strong>教学进度：</strong>每周完成10课时新课，16周完成全部160课时；周末用于重难点突破及补考辅导<br>
+            <strong>学习周期：</strong>16周（约4个月）<br>
+            <strong>授课模式：</strong>夜校新课 + 周末实操巩固 + 里程碑通关考核 + 结业综合项目答辩<br>
+            <strong>补课机制：</strong>学员若因请假缺课，须在当周周末补齐实操练习，确保跟上里程碑考核节点
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">学习形式与教学保障</div>
+
+    <div class="guarantee-grid">
+        <div class="guarantee-item">
+            <div class="guarantee-icon">🖥️</div>
+            <div class="guarantee-title">一人一台位</div>
+        </div>
+        <div class="guarantee-item">
+            <div class="guarantee-icon">👨‍🏫</div>
+            <div class="guarantee-title">双师配置</div>
+        </div>
+        <div class="guarantee-item">
+            <div class="guarantee-icon">🔧</div>
+            <div class="guarantee-title">真设备实操</div>
+        </div>
+        <div class="guarantee-item">
+            <div class="guarantee-icon">📋</div>
+            <div class="guarantee-title">里程碑考核</div>
+        </div>
+    </div>
+
+    <div class="schedule-card" style="margin-top:16px;">
+        <div class="schedule-title">⚙️ 实训设备配置</div>
+        <div class="schedule-content">
+            <strong>PLC控制器：</strong>西门子S7-1200系列（含CPU及数字量/模拟量扩展模块，可拆装）<br>
+            <strong>驱动执行：</strong>三菱伺服系统（驱动器+伺服电机）、变频器（支持多段速及模拟量调速）<br>
+            <strong>检测传感：</strong>光电传感器（NPN/PNP）、温湿度传感器、行程开关、按钮/指示灯<br>
+            <strong>人机交互：</strong>触摸屏HMI（支持报警弹窗、数据趋势图、配方管理）<br>
+            <strong>通讯对象：</strong>第二台S7-1200PLC（用于S7通讯）、RFID读写模块<br>
+            <strong>工具软件：</strong>数字万用表、钳形电流表、压线钳、剥线钳、TIA博图V18、S7-PLCSIM仿真软件
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">结业综合验收项目</div>
+    <p style="font-size:13px; color:#999; margin-bottom:16px;">结业验收占用最后阶段课时，不讲授新内容。学员现场抽签以下三个全流程项目之一，独立完成并在答辩会上演示。</p>
+
+    <div style="background:#252525; border-radius:10px; padding:16px; margin-bottom:12px; border-left:3px solid #c8956c;">
+        <div style="font-size:15px; font-weight:600; color:#e8e8e8; margin-bottom:8px;">项目一：自动分拣与定位仓储系统（全栈型）</div>
+        <div style="font-size:13px; color:#aaa; line-height:1.6;">
+            覆盖硬件：光电传感器、变频器（多段速）、三菱伺服（单轴定位）、两台PLC（S7通讯）、触摸屏<br>
+            核心考点：变频器多段速切换、伺服回原点/绝对定位、S7数据交换、触摸屏实时监控与报警
+        </div>
+    </div>
+
+    <div style="background:#252525; border-radius:10px; padding:16px; margin-bottom:12px; border-left:3px solid #c8956c;">
+        <div style="font-size:15px; font-weight:600; color:#e8e8e8; margin-bottom:8px;">项目二：恒温恒湿环境调控系统（过程控制型）</div>
+        <div style="font-size:13px; color:#aaa; line-height:1.6;">
+            覆盖硬件：温湿度传感器（模拟量）、变频器（模拟量调速）、中间继电器、触摸屏<br>
+            核心考点：模拟量AI/AO转换、比较指令、变频器调速、触摸屏趋势图与超限报警
+        </div>
+    </div>
+
+    <div style="background:#252525; border-radius:10px; padding:16px; border-left:3px solid #c8956c;">
+        <div style="font-size:15px; font-weight:600; color:#e8e8e8; margin-bottom:8px;">项目三：基于RFID的智能产线溯源系统（通讯识别型）</div>
+        <div style="font-size:13px; color:#aaa; line-height:1.6;">
+            覆盖硬件：RFID读写头、三菱伺服（定位至不同工位）、两台PLC（S7通讯）、触摸屏<br>
+            核心考点：RFID数据读取/写入、伺服定位控制、数据块（DB）记录与追溯、触摸屏历史查询
+        </div>
+    </div>
+</section>
+
+<!-- ===== 底部 - 大号可点击电话 ===== -->
+<footer class="footer">
+    <div class="footer-brand">
+        简禾教育科技
+        <small>宜东产业工人技能服务中心</small>
+    </div>
+    <div class="footer-contact">
+        <p style="color:#999; font-size:14px;">个人学习咨询 · 承接企业内训</p>
+        <a href="tel:19371448666" class="phone-link">
+            📞 覃老师 19371448666
+            <small>点击直接拨打</small>
+        </a>
+        <br>
+        <a href="tel:15672531685" class="phone-link" style="border-color:#64b4ff; color:#64b4ff;">
+            📞 何老师 15672531685
+            <small>点击直接拨打</small>
+        </a>
+        <br>
+        <a href="tel:19371448666" class="cta-button">立即咨询报名</a>
+    </div>
+</footer>
+
+</body>
+</html>
